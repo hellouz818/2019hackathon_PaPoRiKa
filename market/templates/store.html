@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>market</h1>
+<a href="{% url 'postcreate'%}">새 글 쓰기 </a>
+
+{% for post in posts.all %}
+    <h1>{{post.title}}</h1>
+    <p>{{post.pub_date}}</p>
+    <p>{{post.body}}</p>
+    <a href="{% url 'detail' post.id %}">...more</a>
+    
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>뉴 페이지~! 0_0 </h1>
+
+<form method = 'POST' enctype="multipart/form-data" novalidate>
+    {% csrf_token %}
+    <table>
+        {{form.as_table}}
+    </table>
+    <br>
+    <input type = "submit" value="등록">
+</form>
+
+{% endblock %}
