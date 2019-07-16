@@ -14,7 +14,7 @@ def signup(request):
                 user = User.objects.get(username=request.POST['username'])
                
                 #이메일 추가
-                email = User.objects.get(nickname=request.POST['email'])
+                #email = User.objects.get(nickname=request.POST['email'])
                 return render(request, 'signup.html', {'error': 'Username has already been taken'})
             except User.DoesNotExist:
                 user = User.objects.create_user(

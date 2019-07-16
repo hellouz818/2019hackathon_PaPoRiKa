@@ -2,7 +2,15 @@
 {% bootstrap_css %}
 {% bootstrap_javascript jquery='full' %}
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<style>
+      @font-face { 
+      font-family: 'Malssami815'; 
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.0/Malssami815.woff') format('woff'); 
+      font-weight: normal; 
+      font-style: normal; }
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="font-family:Malssami815">
  <a class="navbar-brand" href="{% url 'home' %}">PAPORIKA</a>
  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
    <span class="navbar-toggler-icon"></span>
@@ -12,25 +20,26 @@
      <a class="nav-item nav-link" href="{% url 'link' %}">사이트 추천</a>
      <a class="nav-item nav-link" href="{% url 'store' %}">템플릿 장터</a>
      {% if user.is_authenticated %}
-     <li class="nav-item dropdown">
-         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
-             aria-haspopup="true" aria-expanded="false">환영합니다. {{ user.email }} 님!</a>
-         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-           <a class="dropdown-item" href="javascript:{document.getElementById('logout').submit()}">로그아웃</a>
-           <form id="logout" method="POST" action="{% url 'logout' %}">
-             {% csrf_token %} <input type="hidden" />
-           </form>
-         </div>
-     </li>
+      <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">환영합니다. {{ user.username }} 님!</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="javascript:{document.getElementById('logout').submit()}">로그아웃</a>
+            <form id="logout" method="POST" action="{% url 'logout' %}">
+              {% csrf_token %} <input type="hidden" />
+            </form>
+          </div>
+      </li>
+    </ul>
      {% else %}
-     <a class="nav-item nav-link" href="{% url 'signup' %}">회원가입</a>
-     <a class="nav-item nav-link" href="{% url 'login' %}">로그인</a>
+      <a class="nav-item nav-link" href="{% url 'signup' %}">회원가입</a>
+      <a class="nav-item nav-link" href="{% url 'login' %}">로그인</a>
      {% endif %}
    </div>
  </div>
 </nav>
 
-<div class="container">
+<div class="container"  style="font-family:Malssami815">
 {% block content %}
 {% endblock %}
 </div>

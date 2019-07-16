@@ -8,6 +8,6 @@
 
 <a href ="{% url 'postupdate' post.id %}">수정하기</a>
 <a href="{% url 'postdelete' post.id %}" onclick="return confirm('정말 삭제하시겠습니까?')">삭제하기 </a>
-<a id="post.id" href="{ post.pptfile.url }" download>{{post.pptfile.name}}</a>
+<a id="post.id" href="{{ post.pptfile.url }}" download>다운로드</a>
 <!-- 미디어파일은 어디에 있는 것인가 -->
 {% endblock %}
