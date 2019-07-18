@@ -5,9 +5,9 @@
 <h1>제목: {{post.title}} </h1>
 <p>작성 날짜: {{post.pub_date}}</p>
 <p>자세한 본문: {{post.body}}</p>
-
+<img src="{{post.image.url}}">
 <a href ="{% url 'postupdate' post.id %}">수정하기</a>
 <a href="{% url 'postdelete' post.id %}" onclick="return confirm('정말 삭제하시겠습니까?')">삭제하기 </a>
 <a id="post.id" href="{{ post.pptfile.url }}" download>다운로드</a>
-<!-- 미디어파일은 어디에 있는 것인가 -->
+
 {% endblock %}
