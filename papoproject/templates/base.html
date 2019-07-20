@@ -1,7 +1,7 @@
 {% load bootstrap4 %}
 {% bootstrap_css %}
 {% bootstrap_javascript jquery='full' %}
-
+{% load staticfiles %}
 <style>
       @font-face { 
       font-family: 'Malssami815'; 
@@ -12,8 +12,15 @@
   
 </style>
 
+<!-- 귀여운 파포리 넣기-->
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="font-family:Malssami815">
- <a class="navbar-brand" href="{% url 'home' %}">PAPORIKA</a>
+  <div class="navbar-brand">
+    <span class="navbar-logo">
+        <img src="{% static 'green.jpg' %}" >
+    </span>
+    <a class="navbar-brand" href="{% url 'home' %}">PAPORIKA</a>
+  </div>
+<!-- <a class="navbar-brand" href="{% url 'home' %}">PAPORIKA</a> -->
  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
    <span class="navbar-toggler-icon"></span>
  </button>
@@ -24,8 +31,8 @@
      {% if user.is_authenticated %}
       <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false" style="margin-left:1000;">환영합니다. {{ user.username }} 님!</a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="margin-left:1000;">
+              aria-haspopup="true" aria-expanded="false" style="margin-left:800;">환영합니다. {{ user.username }} 님!</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="margin-left:800;">
             <a class="dropdown-item" href="javascript:{document.getElementById('logout').submit()}">로그아웃</a>
             <form id="logout" method="POST" action="{% url 'logout' %}">
               {% csrf_token %} <input type="hidden" />
@@ -34,12 +41,15 @@
       </li>
     </ul>
      {% else %}
-      <a class="nav-item nav-link" href="{% url 'signup' %}" style="margin-left:1000;">회원가입</a>
+      <a class="nav-item nav-link" href="{% url 'signup' %}" style="margin-left:800;">회원가입</a>
       <a class="nav-item nav-link" href="{% url 'login' %}">로그인</a>
      {% endif %}
    </div>
  </div>
 </nav>
+
+
+
 
 <div class="container"  style="font-family:Malssami815">
 {% block content %}

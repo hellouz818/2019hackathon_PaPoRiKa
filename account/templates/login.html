@@ -11,18 +11,25 @@
 <h1>Login</h1>
 
 <form method="POST" action="{% url 'login' %}">
+{% csrf_token %}
 
-    {% csrf_token %}
-    Username:
-    <br>
-    <input name="username" type="text" value="">
-    <br>
-    Password:
-    <br>
-    <input name="password" type="password" value="">
-    <br>
-    <br>
-    <input class="btn btn-primary" type="submit" value="Login">
+<br>
+<div class="form-label-group" style="width:400px;">
+  <label for="inputUsername">ID</label>
+  <input name="username" type="text" class="form-control" id="inputUsername" placeholder="아이디" value="" required="" autofocus="">
+</div>
+<br>
+<div class="form-label-group" style="width:400px;">
+  <label for="inputPassword1">Password</label>
+  <input name="password1" type="password1" id="inputPassword1" class="form-control" placeholder="비밀번호" value="" required="">
+</div>
+<!--
+<input class="btn btn-primary" type="submit" value="Login">
+-->
+<br>
+<input class="btn btn-lg btn-primary btn-block" type="submit" style="width:400px;" value="로그인">
+
+
 </form>
 
 {% endblock %}

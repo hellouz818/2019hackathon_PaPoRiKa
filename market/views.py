@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.models import User
 from .models import Market
 from .forms import PostForm
 
@@ -6,7 +7,8 @@ from .forms import PostForm
 # Create your views here.
 
 def store(request):
-    posts = Market.objects
+    #이화가 구현한 시간순 정렬.. 크으
+    posts = Market.objects.order_by('-pub_date')
     return render(request, 'store.html', {'posts': posts})
 
 def detail(request, post_id):
@@ -21,6 +23,7 @@ def postcreate(request):
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
+            post.author = User.objects.get(username = request.user.get_username())
             post.save()
             return redirect('store')
     else:
@@ -46,3 +49,13 @@ def postdelete(request, post_id):
     post = get_object_or_404(Market, pk=post_id)
     post.delete()
     return redirect('store')
+
+
+
+#서치기능
+def result(request):
+    post_object = Market.objects
+    query = request.GET.get('query','')
+    if query:
+        post_object = post_object.filter(title__contains=query).order_by('-pub_date')
+        return render(request, 'result.html', {'result':post_object})

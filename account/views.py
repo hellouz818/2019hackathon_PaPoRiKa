@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import auth
+from myprofile.models import Profile
 # Create your views here.
 
 def home(request):
@@ -12,13 +13,15 @@ def signup(request):
         if request.POST['password1'] == request.POST['password2']:
             try:
                 user = User.objects.get(username=request.POST['username'])
-               
-                #이메일 추가
-                #email = User.objects.get(nickname=request.POST['email'])
                 return render(request, 'signup.html', {'error': 'Username has already been taken'})
             except User.DoesNotExist:
                 user = User.objects.create_user(
-                   request.POST['username'], password=request.POST['password1'])
+                   request.POST['username'], 
+                   password=request.POST['password1'])
+                nickname = request.POST['nickname']
+                email = request.POST['email']
+                profile = Profile(user=user, nickname=nickname, email=email)
+                profile.save()
                 auth.login(request, user)
                 return redirect('home')
         else:
@@ -31,7 +34,7 @@ def signup(request):
 def login(request):
    if request.method == 'POST': #로그인 버튼을 눌렀을 때
        username = request.POST['username']
-       password = request.POST['password']
+       password = request.POST['password1']
        user = auth.authenticate(request, username=username, password=password)
        if user is not None: #사용자 정보를 알맞게 입력한 경우
            auth.login(request, user)
