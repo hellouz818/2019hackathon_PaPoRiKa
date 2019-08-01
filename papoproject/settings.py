@@ -39,10 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'account.apps.AccountConfig',
     'market.apps.MarketConfig',
+    'makeppt.apps.MakepptConfig',
     'msg.apps.MsgConfig',
     'bootstrap4',
     'comment.apps.CommentConfig',
     'myprofile.apps.MyprofileConfig',
+    'honeytip.apps.HoneytipConfig',
     #'search.apps.SearchConfig',
 ]
 

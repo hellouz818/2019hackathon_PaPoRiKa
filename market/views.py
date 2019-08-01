@@ -1,6 +1,6 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, HttpResponseRedirect
 from django.contrib.auth.models import User
-from .models import Market
+from .models import Market, Scrap
 from .forms import PostForm
 
 
@@ -13,7 +13,13 @@ def store(request):
 
 def detail(request, post_id):
     post_detail = get_object_or_404(Market, pk = post_id)
-    return render(request, 'detail.html', {'post': post_detail})
+    scrap_count = 3
+    
+    if request.user.is_authenticated():
+        scrap = Scrap.objects.filter(user=request.user, post=post_detail)
+        return render(request, 'detail.html', {'post': post_detail, 'scrap':scrap, 'count':scrap_count})
+    else :
+        return render(request, 'detail.html', {'post': post_detail, 'count':scrap_count})
 
 def new(request):
     return render(request, 'new.html')
@@ -39,6 +45,7 @@ def postupdate(request, post_id):
         form = PostForm(request.POST, instance=post)
         if form.is_valid():
             post = form.save(commit=False)
+            post.author = User.objects.get(username = request.user.get_username())
             post.save()
             return redirect('detail', post_id=post.pk)
     else:
@@ -49,6 +56,16 @@ def postdelete(request, post_id):
     post = get_object_or_404(Market, pk=post_id)
     post.delete()
     return redirect('store')
+
+def scrap(request, post_id):
+    post = get_object_or_404(Market, pk=post_id)
+    scrapped = Scrap.objects.filter(user=request.user, post=post)
+    if not scrapped:
+        Scrap.objects.create(user=request.user, post=post)
+    #request.user는 현재 로그인한 user
+    else:
+        scrapped.delete()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
 
 

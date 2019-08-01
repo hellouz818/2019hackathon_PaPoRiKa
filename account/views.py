@@ -1,6 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib import auth
+from myprofile.models import Profile
+from market.models import Market, Scrap
 from myprofile.models import Profile
 # Create your views here.
 
@@ -46,7 +48,16 @@ def login(request):
 
 
 def logout(request):
-   if request.method == 'POST':
+    if request.method == 'POST':
        auth.logout(request)
        return redirect('home')
-   return render(request, 'signup.html')
+    return render(request, 'signup.html')
+
+
+def mypage(request, user_id):
+    user = get_object_or_404(User, pk=user_id)
+    scraps = Scrap.objects.filter(user=request.user).order_by('-scrap_date')
+    return render(request, 'mypage.html', {'user':user, 'scraps':scraps})
+
+
+

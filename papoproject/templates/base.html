@@ -2,6 +2,12 @@
 {% bootstrap_css %}
 {% bootstrap_javascript jquery='full' %}
 {% load staticfiles %}
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <style>
       @font-face { 
       font-family: 'Malssami815'; 
@@ -9,49 +15,87 @@
       font-weight: normal; 
       font-style: normal; }
 
-  
+      @font-face { font-family: 'YiSunShinDotumM'; 
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); 
+      font-weight: normal; 
+      font-style: normal; }
 </style>
 
 <!-- 귀여운 파포리 넣기-->
-<nav class="navbar navbar-expand-lg navbar-light bg-light" style="font-family:Malssami815">
-  <div class="navbar-brand">
-    <span class="navbar-logo">
-        <img src="{% static 'green.jpg' %}" >
-    </span>
-    <a class="navbar-brand" href="{% url 'home' %}">PAPORIKA</a>
-  </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="font-family: 'YiSunShinDotumM'">
+  <a class="navbar-brand" href="{% url 'home' %}">
+    <img src="https://previews.123rf.com/images/rainart123/rainart1231610/rainart123161000117/68112905-%EB%85%B8%EB%9E%80%EC%83%89-%ED%8C%8C%ED%94%84%EB%A6%AC%EC%B9%B4-%EA%B7%B8%EB%A6%BC-%EB%B2%A1%ED%84%B0.jpg" width="30" height="30" alt="">
+    PAPORIKA</a>
 <!-- <a class="navbar-brand" href="{% url 'home' %}">PAPORIKA</a> -->
  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
    <span class="navbar-toggler-icon"></span>
  </button>
  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-   <div class="navbar-nav">
-     <a class="nav-item nav-link" href="{% url 'link' %}">사이트 추천</a>
-     <a class="nav-item nav-link" href="{% url 'store' %}">템플릿 장터</a>
-     {% if user.is_authenticated %}
-      <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false" style="margin-left:800;">환영합니다. {{ user.username }} 님!</a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="margin-left:800;">
-            <a class="dropdown-item" href="javascript:{document.getElementById('logout').submit()}">로그아웃</a>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item"> 
+        <a class="nav-link" href="{% url 'link' %}">사이트 추천</a>
+      </li>
+      <li class="nav-item">  
+        <a class="nav-link" href="{% url 'store' %}">템플릿 장터</a>
+      </li>
+    </ul>
+    
+    <!--<form class="form-inline my-2 my-lg-0">-->
+    <ul class="navbar-nav">
+      {% if user.is_authenticated %}
+      <!--
+      <li class="nav-item">
+          <a class="nav-link"
+              aria-haspopup="true" aria-expanded="false">환영합니다. {{ user.username }} 님!</a>
+              <a href="{% url 'mypage' user.id %}">mypage</a>
+          //<div class="dropdown-menu" aria-labelledby="navbarDropdown"//
+            <a class="nav-item" href="javascript:{document.getElementById('logout').submit()}">로그아웃</a>
             <form id="logout" method="POST" action="{% url 'logout' %}">
               {% csrf_token %} <input type="hidden" />
             </form>
           </div>
       </li>
+      -->
+      <li class="nav-item">
+        <a class="nav-link">환영합니다. {{ user.username }} 님!</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'mypage' user.id %}">마이페이지</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="javascript:{document.getElementById('logout').submit()}">로그아웃</a>
+        <form id="logout" method="POST" action="{% url 'logout' %}">
+        {% csrf_token %} <input type="hidden" />
+        </form>
+      </li>
+      <!--
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">환영합니다. {{ user.username }} 님!</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="javascript:{document.getElementById('logout').submit()}">로그아웃</a>
+          <form id="logout" method="POST" action="{% url 'logout' %}">
+            {% csrf_token %} <input type="hidden" />
+          </form>
+        </div>
+      </li>
+    -->     
+      {% else %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'signup' %}">회원가입</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'login' %}">로그인</a>
+      </li>
+      {% endif %}
     </ul>
-     {% else %}
-      <a class="nav-item nav-link" href="{% url 'signup' %}" style="margin-left:800;">회원가입</a>
-      <a class="nav-item nav-link" href="{% url 'login' %}">로그인</a>
-     {% endif %}
+    <!--</form>-->
    </div>
  </div>
 </nav>
 
 
-
-
-<div class="container"  style="font-family:Malssami815">
-{% block content %}
-{% endblock %}
+<div class="container"  style="font-family: 'YiSunShinDotumM'">
+  {% block content %}
+  {% endblock %}
 </div>

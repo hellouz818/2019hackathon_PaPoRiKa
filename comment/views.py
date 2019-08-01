@@ -27,6 +27,11 @@ def commentcreate(request, post_id):
 
 def commentupdate(request, comment_id):
     comment = get_object_or_404(Comment, pk=comment_id)
+    
+    if request.user != comment.author:
+        messages.warning(request, "권한 없음")
+        #return redirect(document)
+
     if request.method=='POST':
         form = CommentForm(request.POST, instance=comment)
         if form.is_valid():
@@ -41,7 +46,13 @@ def commentupdate(request, comment_id):
         return render(request, 'detail.html', {'form_comment': form, 'post': comment.post})
 
 
+
+
+
+
+
 def commentdelete(request, comment_id):
     comment = get_object_or_404(Comment, pk=comment_id)
-    comment.delete()
+    if comment.author == User.objects.get(username = request.user.get_username()):
+        comment.delete()
     return redirect('detail', post_id=comment.post.pk)
