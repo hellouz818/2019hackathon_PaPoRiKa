@@ -19,12 +19,13 @@
       src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); 
       font-weight: normal; 
       font-style: normal; }
+
 </style>
 
 <!-- 귀여운 파포리 넣기-->
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="font-family: 'YiSunShinDotumM'">
   <a class="navbar-brand" href="{% url 'home' %}">
-    <img src="https://previews.123rf.com/images/rainart123/rainart1231610/rainart123161000117/68112905-%EB%85%B8%EB%9E%80%EC%83%89-%ED%8C%8C%ED%94%84%EB%A6%AC%EC%B9%B4-%EA%B7%B8%EB%A6%BC-%EB%B2%A1%ED%84%B0.jpg" width="30" height="30" alt="">
+    <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FRkqT8%2FbtqxhMpsJO6%2FJ86Ez0S3tP1dPiyQy1IiQ0%2Fimg.jpg" width="30" height="30" alt="">
     PAPORIKA</a>
 <!-- <a class="navbar-brand" href="{% url 'home' %}">PAPORIKA</a> -->
  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,10 +34,16 @@
  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item"> 
+        <a class="nav-link" href="{% url 'info' %}">파포리카 소개</a>
+      </li>
+      <li class="nav-item"> 
         <a class="nav-link" href="{% url 'link' %}">사이트 추천</a>
       </li>
       <li class="nav-item">  
         <a class="nav-link" href="{% url 'store' %}">템플릿 장터</a>
+      </li>
+      <li class="nav-item">  
+        <a class="nav-link" href="{% url 'honeytip' %}">꿀팁 게시판</a>
       </li>
     </ul>
     
@@ -98,4 +105,23 @@
 <div class="container"  style="font-family: 'YiSunShinDotumM'">
   {% block content %}
   {% endblock %}
+
+
+<div id="footer" class="container">
+  <p>2019 SOOKMYUNG LIKELION - 장이화 도완주 유지연 이하은</p>
+</div>
+<footer class="bd-footer text-muted">
+  <div class="container-fluid p-3 p-md-5">
+    <ul class="bd-footer-links">
+      <li><a href="https://github.com/twbs/bootstrap">GitHub</a></li>
+      <li><a href="https://twitter.com/getbootstrap">Twitter</a></li>
+      <li><a href="/docs/4.3/examples/">Examples</a></li>
+      <li><a href="/docs/4.3/about/overview/">About</a></li>
+    </ul>
+    <p>Designed and built with all the love in the world by the <a href="/docs/4.3/about/team/">Bootstrap team</a> with the help of <a href="https://github.com/twbs/bootstrap/graphs/contributors">our contributors</a>.</p>
+    <p>Currently v4.3.1. Code licensed <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
+  </div>
+</footer>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="/docs/4.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
 </div>

@@ -13,5 +13,6 @@ urlpatterns = [
     path('', account.views.home, name="home"),
     path('comment/', include('comment.urls')),
     path('profile/', include('myprofile.urls')),
+    path('honeytip/', include('honeytip.urls')),
     #path('ppt/', include('makeppt.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

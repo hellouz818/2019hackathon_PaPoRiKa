@@ -5,24 +5,31 @@
         margin-top: 60px;
         margin-left: 70px;
     }
+
     #title{
         font-size: 50px;
     }
+
+
     #link1{
+        width: 33%;
         font-size: 20px;
         margin-top: 10px;
         background-color: antiquewhite;
         border: 4px solid #feada6;
-        border-radius: 12px;
-        padding: 10px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        text-align: center;
     }
+
+
     #link1:hover{
         font-size: 20px;
         margin-top: 10px;
         background-color: #f3d2a6;
         border: 4px solid #feada6;
-        border-radius: 12px;
-        padding: 10px;
+        padding-top: 50px;
+        padding-bottom: 50px;
         opacity: 0.8;
     }
     #link{
@@ -39,19 +46,19 @@
     <hr>
 
     <br>
-    <a href="{%url 'link'%}" id="link" style="color:#c3b8f3ea">링크링크</a>
-
-    <form action="{%url 'link'%}">
+    <!--
+        <a href="{%url 'link'%}" id="link" style="color:#c3b8f3ea">링크링크</a>
+    -->
+    
+    <form action="{%url 'link'%}" >
         <input id="link1" type="submit" value="색감">
-    <br>
 
     <form action="{%url 'link'%}">
         <input id="link1" type="submit" value="이미지 및 아이콘">
-    <br>
-
+    
     <form action="{%url 'link'%}">
         <input id="link1" type="submit" value="해외템플릿">
-    <br>
+    
+
     {% endblock %}
-    </form>
 </body>

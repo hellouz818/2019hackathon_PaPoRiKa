@@ -12,8 +12,8 @@ class Market(models.Model):
     body = models.TextField(default='')
     image = models.ImageField(null=True, upload_to='images/')
     pptfile = models.FileField(null=True, upload_to='documents/')
-    users = models.ManyToManyField(User, through='Scrap')
-
+    users = models.ManyToManyField(User, related_name='users', through='Scrap')
+    
     def __str__(self):
         return self.title
 
@@ -25,3 +25,5 @@ class Scrap(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(Market, on_delete=models.CASCADE)
     scrap_date = models.DateTimeField(auto_now_add=True, null=True)
+    def __str__(self):
+        return self.post.title

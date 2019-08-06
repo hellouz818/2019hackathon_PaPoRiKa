@@ -22,7 +22,8 @@ def signup(request):
                    password=request.POST['password1'])
                 nickname = request.POST['nickname']
                 email = request.POST['email']
-                profile = Profile(user=user, nickname=nickname, email=email)
+                name = request.POST['name']
+                profile = Profile(user=user, name=name, nickname=nickname, email=email)
                 profile.save()
                 auth.login(request, user)
                 return redirect('home')
@@ -60,4 +61,5 @@ def mypage(request, user_id):
     return render(request, 'mypage.html', {'user':user, 'scraps':scraps})
 
 
-
+def info(request):
+    return render(request, 'info.html')

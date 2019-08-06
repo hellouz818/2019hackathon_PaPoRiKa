@@ -12,6 +12,7 @@ urlpatterns = [
     path('postdelete/<int:post_id>', views.postdelete, name='postdelete'),
     path('result/', views.result, name='result'),
     path('scrap/<int:post_id>', views.scrap, name='scrap'),
+    path('empty_ppt/', views.empty_ppt, name='empty_ppt'),
     #path('search/', views.search, name='search'),
     
 ]
