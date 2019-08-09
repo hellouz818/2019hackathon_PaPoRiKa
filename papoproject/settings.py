@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'account.apps.AccountConfig',
     'market.apps.MarketConfig',
-    'makeppt.apps.MakepptConfig',
     'msg.apps.MsgConfig',
     'bootstrap4',
     'comment.apps.CommentConfig',
@@ -130,6 +129,7 @@ USE_TZ = False
 #홈 스태틱!
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'account', 'static'),
+    os.path.join(BASE_DIR, 'market', 'static'),
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'

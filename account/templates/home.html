@@ -36,6 +36,15 @@
       margin-left: auto;
       margin-right: auto;
       }
+
+      .image:hover {
+        opacity: 0.5;
+      }
+
+      #more:hover {
+        opacity: 0.5;
+      }
+      
     </style>
     <!-- Custom styles for this template -->
     
@@ -47,40 +56,49 @@
 
     <div class="container">
     <br>
+    <!--
     <h2 align="center">"파워포인트를 쉽고 편리하게 만들어볼카?"</h2>
     <img src="{% static 'papo.png' %}" width="800" alt="메인사진" style="margin-left:auto; margin-right:auto; display:block;" />      
+    -->
+    <a href="{% url 'store' %}">
+      <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FbC9AsT%2FbtqxjBaoTZp%2FJR6ss35dAcQYx1eQw5X77k%2Fimg.png" class="image" width="400" alt="메인사진" style="margin-left:15%"/>
+    </a>
+    <a data-toggle="modal" data-target="#exampleModal">
+      <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FbQYZsl%2FbtqxhMjq6xY%2FNkTzx37AVymYBzkMKS6gf1%2Fimg.png" class="image" width="400" alt="메인사진" />
+    </a>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">서비스 준비 중</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          해당 서비스는 파포리카 ver.2 에서 공개할 예정입니다.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+      </div>
+    </div>
+  </div>
+
+
+
+      <br><br>
+    <a id="more" style="margin-left:79%; color:white" class="btn waves-effect waves-light red lighten-2" href="{% url 'info' %}" role="button">더 알아보기</a>
+    </div>
+
+
+
     
-    <a style="margin-left:830;" class="btn btn-warning" href="{% url 'info' %}" role="button">더 알아보기</a>
-    </div>
 
-<hr>
-  <div class="container">
-    <!-- Example row of columns -->
-    <div class="row">
-      <div class="col-md-4">
-        <h2>템플릿 장터</h2>
-        <p>템플릿 장터에서는 내가 만든 템플릿을 등록하고 판매하거나, 다른 사람이 만든 템플릿을 구매할 수 있어요.</p>
-        <p><a class="btn btn-secondary" href="{% url 'store' %}" role="button">자세히 보기</a></p>
-      </div>
-      <div class="col-md-4">
-        <h2>사이트 추천</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <p><a class="btn btn-secondary" href="{% url 'link' %}" role="button">자세히 보기</a></p>
-      </div>
-      <div class="col-md-4">
-        <h2>꿀팁 게시판</h2>
-        <p>PPT 고수들의 꿀팁을 공유하는 공간이에요. 나만 알기엔 아까운 정보들을 마구마구 공유하고 고퀄리티 발표자료를 만들어 가요.</p>
-        <p><a class="btn btn-secondary" href="{% url 'honeytip' %}" role="button">자세히 보기</a></p>
-      </div>
-    </div>
-
-    <hr>
-
-  </div> <!-- /container -->
-
+ 
 </main>
-
-
 </body></html>
 
 {% endblock %}

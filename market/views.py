@@ -2,25 +2,33 @@ from django.shortcuts import render, get_object_or_404, redirect, HttpResponseRe
 from django.contrib.auth.models import User
 from .models import Market, Scrap
 from .forms import PostForm
-
-
-# Create your views here.
+import csv
+from django.http import HttpResponse
 
 def store(request):
     #이화가 구현한 시간순 정렬.. 크으
     #posts = Market.objects.order_by('-scrap_count')
-    
     posts = Market.objects.order_by('-pub_date')
     return render(request, 'store.html', {'posts': posts})
 
 def detail(request, post_id):
     post_detail = get_object_or_404(Market, pk = post_id)
-    if User.DoesNotExist:
-        return render(request, 'detail.html', {'post': post_detail})
-    else: 
-        scrap = Scrap.objects.filter(user=request.user, post=post_detail)
-        return render(request, 'detail.html', {'post': post_detail, 'scrap':scrap})
+    #if User.DoesNotExist:
+        #return render(request, 'detail.html', {'post': post_detail})
+    #else: 
+    scrap = Scrap.objects.filter(user=request.user, post=post_detail)
+    return render(request, 'detail.html', {'post': post_detail, 'scrap': scrap})
 
+
+
+    #post_detail = get_object_or_404(Market, pk = post_id)
+    #if request.user.exists():
+    #    scrap = Scrap.objects.filter(user=request.user, post=post_detail)
+    #    return render(request, 'detail.html', {'post': post_detail, 'scrap': scrap})
+    #else:
+    #    return render(request, 'detail.html', {'post': post_detail})
+
+    
 def new(request):
     return render(request, 'new.html')
 
@@ -79,3 +87,12 @@ def result(request):
 
 def empty_ppt(request):
     return render(request, 'empty_ppt.html')
+
+def ppt(request):
+    response = HttpResponse(content_type='text/plain')
+    response['Content-Disposition'] = 'attachment; filename="papo.ppt"'
+    
+    writer = csv.writer(response)
+    writer.writerow({'paporika!'})
+    
+    return response
