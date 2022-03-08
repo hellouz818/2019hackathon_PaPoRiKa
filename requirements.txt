@@ -12,7 +12,7 @@ docutils==0.14
 easygui==0.98.1
 future==0.16.0
 gunicorn==19.9.0
-httpie==1.0.3
+httpie==3.1.0
 idna==2.7
 jmespath==0.9.4
 pathspec==0.5.9
